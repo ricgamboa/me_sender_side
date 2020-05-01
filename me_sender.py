@@ -1,9 +1,10 @@
 # Main program used by the sender to receive question and send encrypted answer
 
 from pathlib import Path
+import json
+
 import me_sender_server_communicator
 import me_sender_interface
-import json
 
 
 def main():
@@ -12,8 +13,12 @@ def main():
     with open(config_info_path) as config:
         config_info = json.load(config)
         alphabet_size = config_info["ALPHABET_SIZE"]
-        url_question_get = config_info["QUESTION_REQUEST_URL"]
-        url_answer_send = config_info["QUESTION_SEND_URL"]
+    # Read URLs
+        urls_path = Path.cwd().joinpath("urls")
+        with open(urls_path) as urls:
+            urls_info = json.load(urls)
+            url_question_get = urls_info["QUESTION_REQUEST_URL"]
+            url_answer_send = urls_info["QUESTION_SEND_URL"]
 
     # Request question
     communicator = me_sender_server_communicator.Communicator()
