@@ -10,6 +10,7 @@ class Communicator:
 
     def __init__(self):
         self.question = me_components.Question(0, 0)
+        self.question_info = ""
         self.answer = []
         self.senderid = 0
 
@@ -31,6 +32,7 @@ class Communicator:
         position_list = question_res["positions_lists"]
         for pos_li in position_list:
             self.question.append_position_list(pos_li)
+        self.question_info = question_res["custom_info"]
 
     def send_answer(self, url):
         # This method must be replaced by secure server communication

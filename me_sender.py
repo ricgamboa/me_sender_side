@@ -28,13 +28,14 @@ def main():
     interface.request_senderid()
 
     # Show general information to the sender
-    interface.show_general_info()
+    interface.show_general_info(communicator.question_info)
 
     # Show the list of random positions to the sender and the encrypt alphabet
     # for each letter
     for num_letter in range(communicator.question.num_answer_letters):
-        interface.show_position_list(num_letter)
-        interface.show_icon_groups(alphabet_size, num_letter)
+        interface.draw_position_list(num_letter)
+        interface.draw_icon_groups(alphabet_size, num_letter)
+        interface.show_icon_position(num_letter)
 
     # Read the encrypted answer
     interface.read_answer()
